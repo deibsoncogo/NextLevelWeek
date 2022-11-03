@@ -1,0 +1,23 @@
+# folders
+node_modules
+coverage
+dist
+build
+tmp
+.next
+.vercel
+
+# files extension
+**.log**
+**.env**
+**.DS_Store**
+
+# files name and extension
+notes.md
+production.md
+.favorites.json
+
+# exceptions
+!.env
+!.env.example
+!.example.env
