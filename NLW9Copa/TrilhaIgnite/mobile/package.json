@@ -1,0 +1,25 @@
+{
+  "name": "nextlevelweek9copatrilhaignitemobile",
+  "version": "1.0.0",
+  "description": "Nesta edição iremos criar um sistema responsável por gerenciar bolões da copa",
+  "main": "node_modules/expo/AppEntry.js",
+  "repository": "git@github.com:deibsoncogo/NextLevelWeek.git",
+  "author": "Deibson Cogo <deibsoncogo@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~46.0.16",
+    "expo-status-bar": "~1.4.0",
+    "react": "18.0.0",
+    "react-native": "0.69.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9"
+  }
+}
