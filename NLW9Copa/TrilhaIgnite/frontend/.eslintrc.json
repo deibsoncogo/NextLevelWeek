@@ -1,5 +1,6 @@
 {
   "rules": {
+    "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-one-expression-per-line": "off",
