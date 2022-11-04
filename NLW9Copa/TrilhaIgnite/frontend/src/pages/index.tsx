@@ -3,12 +3,15 @@ import appPreviewImg from '../assets/app-nlw-copa-preview.png'
 import iconCheckImg from '../assets/icon-check.svg'
 import logoImg from '../assets/logo.svg'
 import usersAvatarExampleImg from '../assets/users-avatar-example.png'
+import { api } from '../lib/axios'
 
 interface Props {
   poolCount: number
+  guessCount: number
+  usersCount: number
 }
 
-export default function Home({ poolCount }: Props) {
+export default function Home({ poolCount, guessCount, usersCount }: Props) {
   return (
     <div className='max-w-[1124px] h-screen mx-auto grid grid-cols-2 gap-28 items-center'>
       <main>
@@ -21,7 +24,8 @@ export default function Home({ poolCount }: Props) {
         <div className='mt-10 flex items-center gap-2'>
           <Image src={usersAvatarExampleImg} alt='usersAvatarExampleImg' />
           <strong className='text-gray-100 text-xl'>
-            <span className='text-ignite-green'>+ 12.592</span> pessoas já estão usando
+            <span className='text-ignite-green'>+ {usersCount}</span>
+            {' '} {usersCount > 1 ? 'pessoas já estão usando' : 'pessoa já está usando'}
           </strong>
         </div>
 
@@ -52,7 +56,7 @@ export default function Home({ poolCount }: Props) {
 
             <div className='flex flex-col'>
               <span className='font-bold text-2xl'>+ {poolCount}</span>
-              <span>Bolões criados</span>
+              <span>{poolCount > 1 ? 'Bolões criados' : 'Bolão criado'}</span>
             </div>
           </div>
 
@@ -62,8 +66,8 @@ export default function Home({ poolCount }: Props) {
             <Image src={iconCheckImg} alt='iconCheckImg' />
 
             <div className='flex flex-col'>
-              <span className='font-bold text-2xl'>+ 2.034</span>
-              <span>Bolões criados</span>
+              <span className='font-bold text-2xl'>+ {guessCount}</span>
+              <span>{guessCount > 1 ? 'Palpites enviados' : 'Palpite enviado'}</span>
             </div>
           </div>
         </div>
@@ -75,8 +79,17 @@ export default function Home({ poolCount }: Props) {
 }
 
 export const getServerSideProps = async () => {
-  const response = await fetch('http://localhost:3333/pools/count')
-  const data = await response.json()
+  const [poolCountResponse, guessCountResponse, usersCountResponse] = await Promise.all([
+    api.get('pools/count'),
+    api.get('guesses/count'),
+    api.get('users/count'),
+  ])
 
-  return { props: { poolCount: data.count } }
+  return {
+    props: {
+      poolCount: poolCountResponse.data.count,
+      guessCount: guessCountResponse.data.count,
+      usersCount: usersCountResponse.data.count,
+    },
+  }
 }
