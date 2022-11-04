@@ -9,10 +9,32 @@ async function bootstrap() {
 
   await fastify.register(cors, { origin: true })
 
+  fastify.get('/users/count', async () => {
+    const count = await prisma.user.count()
+
+    return { count }
+  })
+
+  fastify.get('/guesses/count', async () => {
+    const count = await prisma.guess.count()
+
+    return { count }
+  })
+
   fastify.get('/pools/count', async () => {
     const count = await prisma.pool.count()
 
     return { count }
+  })
+
+  fastify.post('/pools', async (request, reply) => {
+    const { title } = request.body
+
+    const code = String(Math.random())
+
+    await prisma.pool.create({ data: { title, code } })
+
+    return reply.status(201).send({ code })
   })
 
   await fastify.listen({
