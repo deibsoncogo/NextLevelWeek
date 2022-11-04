@@ -4,10 +4,10 @@ interface IProps {
 
 export default function Home(props: IProps) {
   return (
-    <>
+    <div className="text-violet-500 font-bold text-4xl">
       <h1>Hello word</h1>
       <h2>Contagem: {props.count}</h2>
-    </>
+    </div>
   )
 }
 
