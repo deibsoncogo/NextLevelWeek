@@ -1,5 +1,8 @@
 {
   "rules": {
+    "react/jsx-one-expression-per-line": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-var-requires": "off",
     "camelcase": "off",
     "jsx-quotes": ["error", "prefer-single"],
