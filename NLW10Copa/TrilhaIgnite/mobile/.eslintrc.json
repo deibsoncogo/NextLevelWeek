@@ -1,5 +1,6 @@
 {
   "rules": {
+    "@typescript-eslint/no-var-requires": "off",
     "camelcase": "off",
     "jsx-quotes": ["error", "prefer-single"],
     "semi": ["error", "never"], // proíbe o uso de ponto e virgula
